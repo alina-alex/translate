@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="myForm">
+    Текст на русском для транслита:<br/>
+    <textarea rows="15" cols="50" id="t1" style="float:left"></textarea>
+    <textarea id="transl" rows="15" cols="50"></textarea>
+    <br/>
+    <input class="b"type="button" value="перевести" id="butt"/>
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#butt').click(function(){
+            $.ajax({
+                type: "POST",
+                url: "translate.php",
+                data: "t1="+$("#t1").val(),
+                success: function(html){
+                    $("#transl").html(html);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
